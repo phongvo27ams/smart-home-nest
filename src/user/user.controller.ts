@@ -7,10 +7,15 @@ import {
   Param,
   Body,
   ParseIntPipe,
+  UseGuards,
   UseInterceptors,
   ClassSerializerInterceptor,
 } from '@nestjs/common';
+
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+
 import { UserService } from './user.service';
+
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -19,6 +24,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async findAll() {
     return this.userService.findAll();

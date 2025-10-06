@@ -23,6 +23,10 @@ export class UserService {
     return user;
   }
 
+  async findByUsername(username: string): Promise<User | null> {
+    return this.userRepo.findOne({ where: { username } });
+  }
+
   async create(dto: CreateUserDto): Promise<User> {
     const exist = await this.userRepo.findOne({ where: { username: dto.username } });
     if (exist) throw new BadRequestException('Username already exists');
