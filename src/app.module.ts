@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthModule } from './auth/auth.module';
 import { DeviceModule } from './device/device.module';
+import { EnergyConsumptionModule } from './energy-consumption/energy-consumption.module';
 import { SensorModule } from './sensor/sensor.module';
 import { UserModule } from './user/user.module';
 
@@ -22,6 +23,7 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
     DeviceModule,
+    EnergyConsumptionModule,
     SensorModule,
     UserModule
   ]
