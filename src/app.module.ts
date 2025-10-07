@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthModule } from './auth/auth.module';
 import { DeviceModule } from './device/device.module';
+import { SensorModule } from './sensor/sensor.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -21,6 +22,7 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
     DeviceModule,
+    SensorModule,
     UserModule
   ]
 })
