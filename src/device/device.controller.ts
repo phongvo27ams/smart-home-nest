@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Body, Param, UseGuards, ParseIntPipe, Request  } from '@nestjs/common';
 import { DeviceService } from './device.service';
 import { CreateDeviceDto } from './dto/create-device.dto';
 import { UpdateDeviceDto } from './dto/update-device.dto';
@@ -29,9 +29,14 @@ export class DeviceController {
     return this.deviceService.update(+id, updateDeviceDto);
   }
 
-  @Patch(':id/toggle')
-  toggle(@Param('id') id: number) {
-    return this.deviceService.toggleStatus(+id);
+  @Post(':id/toggle')
+  async toggle(
+    @Param('id', ParseIntPipe) id: number,
+    @Request() req,
+  ) {
+    const userId = req.user?.user_id;
+    const updatedDevice = await this.deviceService.toggleDevice(id, userId);
+    return { message: 'Device toggled', data: updatedDevice };
   }
 
   @Delete(':id')

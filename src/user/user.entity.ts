@@ -9,7 +9,7 @@ export class User {
   @Column({ unique: true })
   username: string;
 
-  @Exclude() // Ẩn khi trả response
+  @Exclude()
   @Column()
   password: string;
 
