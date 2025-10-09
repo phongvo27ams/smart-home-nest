@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   CreateDateColumn,
+  JoinColumn,
 } from 'typeorm';
 import { Device } from '../device/device.entity';
 import { User } from '../user/user.entity';
@@ -14,9 +15,11 @@ export class RelayControl {
   id: number;
 
   @ManyToOne(() => Device, { eager: true, onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'deviceId' })
   device: Device;
 
   @ManyToOne(() => User, { eager: true, nullable: true, onDelete: 'SET NULL' })
+  @JoinColumn({ name: 'userId' })
   user?: User;
 
   @Column()

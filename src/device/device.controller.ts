@@ -34,7 +34,7 @@ export class DeviceController {
     @Param('id', ParseIntPipe) id: number,
     @Request() req,
   ) {
-    const userId = req.user?.user_id;
+    const userId = req.user?.userId;
     const updatedDevice = await this.deviceService.toggleDevice(id, userId);
     return { message: 'Device toggled', data: updatedDevice };
   }
